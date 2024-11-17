@@ -1,0 +1,81 @@
+clear all;
+
+dataPosition = '../../Data/';
+foldernames = [ "000%", "025%", "050%", "075%", "100%" ];
+filenames = [ "1", "2", "3", "4", "5", "6" ];
+
+I0 = [ 1.1732e-05   5.0616e-06    4.3650e-06    2.4263e-05  2.7021e-05 ];
+s_V0 = [ 2.7138e-07   1.1083e-07  1.9941e-07  3.1260e-07  2.6689e-07 ];
+
+thr1 = 2.95;
+thr2 = 3.8;
+Rph = 221.72e3;
+
+
+
+
+for i = 1:1
+    for j = 1:5
+
+
+        if j == 4
+            thr1 = 2.3;
+            thr2 = 3.1;
+            Rph = 100.3e3;
+        elseif j == 5
+            thr1 = 2.0;
+            thr2 = 2.8;
+            Rph = 100.3e3;
+        elseif j == 6
+            thr1 = 1.85;
+            thr2 = 2.6;
+            Rph = 22.131e3;
+        end
+
+        rawData = readmatrix(strcat(dataPosition, foldernames(i), "/data00", filenames(j), ".txt"));
+
+        vw = rawData(:, 1);
+        vph = rawData(:, 2);
+        
+        swapa = [];
+        swapb = [];
+        for k = 1:length(tt)
+            if vw(i) > thr1 && vw(i) < thr2
+                swapa(end+1) = vw(i);
+                swapb(end+1) = vph(i);
+            end
+        end
+        vw = swapa;
+        vph = swapb;
+
+        Ip = mean(vph) / Rph;
+        s_Vp = std(vph) / mean(vph) * Ip;
+
+        A(end+1) = -log10(Ip / I0(j))
+    end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
