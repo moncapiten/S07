@@ -1,5 +1,5 @@
 dataPosition = '../../Data/000%/';
-filename = 'data005';
+filename = 'data006A';
 
 flagSave = false;
 
@@ -37,7 +37,7 @@ elseif filename(end) == '5'
     thr1 = 2.0;
     thr2 = 2.8;
     Rph = 100.3e3;
-elseif filename(end) == '6'
+elseif filename(end) == '6' || filename(end) == 'A'
     thr1 = 1.85;
     thr2 = 2.6;
     Rph = 22.131e3;
