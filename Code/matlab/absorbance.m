@@ -84,12 +84,12 @@ for i = 1:LED_number %led
     for j = 1:5 %concentration
         swapA(end+1) = A(LED_number*(j-1)+i);
         swapSA(end+1) = s_A(LED_number*(j-1)+i);
-        errorbar(cc(j), A(LED_number*(j-1)+i), s_A(LED_number*(j-1)+i), 'o', Color = color(i));        
-        if i==1 && j == 1
-            hold on
-        end
     end
 %    plot(cc, swapA, '--', Color = color(i));
+    errorbar(cc, swapA, swapSA, 'o', Color = color(i));
+    if i == 1
+        hold on
+    end
     [beta, R, ~, covbeta] = nlinfit(cc, swapA, @lin, [1]);
     plot(cc, lin(beta, cc), '-', Color = color(i));
 
@@ -104,9 +104,11 @@ for i = 1:LED_number %led
 
 end
 
+
+
 el
 
-
+legend("absorbance data","fit", Location = "northwest");
 grid on;
 grid minor;
 title('Absorbance on different concentrations');
@@ -116,6 +118,7 @@ xlabel('Concentration ');
 
 
 
+fontsize(14, "points");
 
 
 
