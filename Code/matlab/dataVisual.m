@@ -1,5 +1,5 @@
 dataPosition = '../../Data/000%/';
-filename = 'data006A';
+filename = 'data006';
 
 flagSave = false;
 
